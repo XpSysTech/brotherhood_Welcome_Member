@@ -1,0 +1,1178 @@
+```html
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brotherhood — Welcome & Transparency</title>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+    :root {
+      /* Colors */
+      --ink: #121212;
+      --muted: #6b6f76;
+      --paper: #ffffff;
+      --bg: #f1f1f1;
+      --line: #e6e7ea;
+
+      --accent: #c5a908;
+      /* gold */
+      --accent-word: #006A4E;
+      /* bottle green */
+      --accent-soft: #FFD700;
+      /* gold soft */
+      --accent-maroon: #800000;
+      /* maroon */
+
+      /* Typography */
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+      --fs-xxs: 10.5px;
+      --fs-xs: 12px;
+      --fs-sm: 13.5px;
+      --fs-md: 14.5px;
+      --fs-lg: 16px;
+      --fs-xl: 22px;
+      --fs-xxl: 26px;
+
+      --radius: 14px;
+      --radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: var(--font);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: var(--fs-lg);
+    }
+
+    .wrap {
+      min-height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 56px 18px;
+    }
+
+    .page {
+      width: min(1100px, 100%);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .06);
+      border-radius: var(--radius-lg);
+      overflow: visible;
+      padding: 28px;
+    }
+
+    /* Sticky nav */
+    .nav {
+      position: sticky;
+      top: 14px;
+      z-index: 50;
+      margin: 0 0 16px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: linear-gradient(#fff, #fbfbfb);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .05);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 180px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-word);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+      flex: 0 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand .kicker {
+      font-size: var(--fs-xxs);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .brand .name {
+      font-size: var(--fs-sm);
+      font-weight: 900;
+      letter-spacing: -.01em;
+      margin-top: 3px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all .15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      border-color: var(--line);
+      background: #fff;
+    }
+
+    .nav a.primary {
+      color: var(--ink);
+      border-color: var(--line);
+      background: #fff;
+    }
+
+    .nav a.cta {
+      background: var(--accent-word);
+      color: #fff;
+      border-color: rgba(0, 0, 0, 0.02);
+      font-weight: 900;
+      padding: 9px 14px;
+    }
+
+    .nav a.cta:hover {
+      filter: brightness(0.98);
+      border-color: rgba(0, 0, 0, .06);
+    }
+
+    /* Burger */
+    .burger {
+      display: none;
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 12px;
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 900;
+      font-size: 12.5px;
+      line-height: 1;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .05);
+    }
+
+    .burger:focus {
+      outline: 2px solid rgba(0, 106, 78, .25);
+      outline-offset: 2px;
+    }
+
+    .burger-icon {
+      width: 18px;
+      height: 12px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .burger-icon span {
+      display: block;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      opacity: .85;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      right: 12px;
+      top: 74px;
+      width: min(280px, calc(100vw - 32px));
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 44px rgba(0, 0, 0, .10);
+      overflow: hidden;
+      padding: 10px;
+      z-index: 999;
+    }
+
+    .mobile-menu a {
+      display: flex;
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      text-decoration: none;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-menu a:hover {
+      border-color: var(--line);
+      background: linear-gradient(#fff, #fbfbfb);
+    }
+
+    .mobile-menu .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 8px 0;
+    }
+
+    /* Sections */
+    section {
+      padding: 28px 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      margin: 16px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: var(--fs-xxl);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      font-weight: 900;
+    }
+
+    .section-title .accent {
+      color: var(--accent-word);
+    }
+
+    .section-sub {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: var(--fs-md);
+      line-height: 1.75;
+      max-width: 72ch;
+    }
+
+    .rule {
+      height: 3px;
+      width: 140px;
+      background: var(--ink);
+      border-radius: 999px;
+      opacity: .9;
+      margin-top: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 800;
+      background: linear-gradient(#fff, #fbfbfb);
+      white-space: nowrap;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: linear-gradient(#fff, #fbfbfb);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      margin-top: 10px;
+    }
+
+    /* Cards + grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: linear-gradient(#fff, #fbfbfb);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+
+    .card p {
+      margin: 0;
+      color: #23262b;
+      font-size: var(--fs-md);
+      line-height: 1.85;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      background: #fff;
+    }
+
+    .stat .label {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .stat .value {
+      margin-top: 8px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+
+    .stat .hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    /* Members list */
+    .member-tools {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .input {
+      flex: 1 1 240px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 11px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      outline: none;
+      background: #fff;
+    }
+
+    .input:focus {
+      border-color: rgba(0, 106, 78, .35);
+      box-shadow: 0 0 0 4px rgba(0, 106, 78, .12);
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 11px 14px;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 12.5px;
+      letter-spacing: .02em;
+      color: var(--ink);
+      transition: all .15s ease;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      border-color: var(--line);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .06);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: var(--accent-word);
+      border-color: var(--accent-word);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .10);
+    }
+
+    .btn.primary:hover {
+      filter: brightness(.98);
+    }
+
+    .members {
+      margin-top: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .member {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: #fff;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-soft), #fff);
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--accent-word);
+      flex: 0 0 auto;
+    }
+
+    .member .name {
+      font-weight: 900;
+      letter-spacing: -.01em;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .member .meta {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6;
+      font-weight: 650;
+    }
+
+    /* Rules */
+    .rules {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    details.rule-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 12px 14px;
+    }
+
+    details.rule-item summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 900;
+      font-size: 13.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    details.rule-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chev {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 900;
+      flex: 0 0 auto;
+      background: linear-gradient(#fff, #fbfbfb);
+    }
+
+    details.rule-item[open] .chev {
+      color: var(--ink);
+      border-color: rgba(0, 0, 0, .08);
+    }
+
+    .rule-body {
+      margin-top: 10px;
+      color: #23262b;
+      font-size: var(--fs-md);
+      line-height: 1.9;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(#fff, #fbfbfb);
+      color: #23262b;
+      font-size: var(--fs-md);
+      line-height: 1.85;
+    }
+
+    .note strong {
+      color: var(--ink);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 16px;
+      padding: 14px 12px 2px;
+      color: var(--muted);
+      font-size: 12.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer strong {
+      color: var(--ink);
+    }
+
+    .mini-rule {
+      height: 2px;
+      width: 110px;
+      background: var(--accent);
+      border-radius: 999px;
+      opacity: .85;
+    }
+
+    /* Small screens */
+    @media (max-width: 700px) {
+      .wrap {
+        padding: 20px 12px;
+      }
+
+      .page {
+        padding: 14px;
+        border-radius: var(--radius);
+      }
+
+      .nav {
+        top: 10px;
+        border-radius: var(--radius);
+        padding: 10px 10px;
+      }
+
+      .nav-left {
+        min-width: 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      section {
+        padding: 18px 14px;
+        margin: 12px 0;
+        border-radius: var(--radius);
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+      }
+
+      .section-title {
+        font-size: var(--fs-xl);
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .members {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <main class="page" role="main">
+
+      <!-- NAV -->
+      <nav class="nav" aria-label="Page navigation">
+        <div class="nav-left">
+          <span class="dot" aria-hidden="true"></span>
+          <div class="brand">
+            <div class="kicker">Brotherhood</div>
+            <div class="name">Welcome & Transparency Page</div>
+          </div>
+        </div>
+
+        <!-- Desktop links -->
+        <div class="nav-links" aria-label="Desktop navigation links">
+          <a class="primary" href="#welcome">Welcome</a>
+          <a href="#snapshot">Snapshot</a>
+          <a href="#members">Members</a>
+          <a href="#rules">Constitution</a>
+          <a href="#next">What’s Next</a>
+
+          <a class="cta" href="#contact">Contact</a>
+        </div>
+
+        <!-- Mobile burger -->
+        <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="burger-icon" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          Menu
+        </button>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu" id="mobileMenu" role="menu" aria-label="Mobile navigation">
+        <a href="#welcome" role="menuitem">Welcome</a>
+        <a href="#snapshot" role="menuitem">Snapshot</a>
+        <a href="#members" role="menuitem">Members</a>
+        <a href="#rules" role="menuitem">Constitution</a>
+        <div class="divider" aria-hidden="true"></div>
+        <a href="#next" role="menuitem">What’s Next</a>
+        <div class="divider" aria-hidden="true"></div>
+        <a href="#contact" role="menuitem">Contact</a>
+      </div>
+
+      <!-- SECTION: WELCOME -->
+      <section id="welcome">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">
+              Welcome to the <span class="accent">Brotherhood</span>
+            </h2>
+            <p class="section-sub">
+              If you are reading this, it means you chose to take the leap. This page is a simple, temporary space to
+              welcome you, show early momentum, and keep basic records visible while the permanent platform is built.
+            </p>
+            <p class="section-sub">
+              The goal here is credibility and clarity — not polish. Everything is intentionally lightweight and easy
+              to update.
+            </p>
+            <div class="rule"></div>
+          </div>
+          <div class="badge">Founding Members</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Purpose</h3>
+            <p>
+              This page exists to welcome new members, show collective commitment, provide transparency at a basic
+              level, and set expectations for what is being built next.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>What This Is / Isn’t</h3>
+            <p>
+              This is a single-page welcome hub. It is <strong>not</strong> a full portal, a financial system, a voting
+              platform, or a long-term technical solution.
+            </p>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>Design philosophy:</strong> Simple over impressive. Clear over clever. Trust over polish.
+        </div>
+      </section>
+
+      <!-- SECTION: SNAPSHOT -->
+      <section id="snapshot">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Current <span class="accent">Brotherhood Snapshot</span></h2>
+            <p class="section-sub">
+              A quick view of where we stand today. Figures are updated manually and exist to build visibility and
+              confidence — not hype.
+            </p>
+            <div class="rule"></div>
+          </div>
+          <div class="badge">Transparency</div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="label">Total Pooled Capital</div>
+            <div class="value" id="pooledCapital">N$ 0</div>
+            <div class="hint">Updated manually • Not an official financial record</div>
+          </div>
+
+          <div class="stat">
+            <div class="label">Number of Members</div>
+            <div class="value" id="memberCount">0</div>
+            <div class="hint">Founding member list shown below</div>
+          </div>
+
+          <div class="stat">
+            <div class="label">Last Updated</div>
+            <div class="value" id="lastUpdated">—</div>
+            <div class="hint">Update whenever capital/members change</div>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:14px;">
+          <strong>Data handling:</strong> No automated calculations. No private data stored. This page is informational
+          only. The authoritative records remain offline and documented separately.
+        </div>
+      </section>
+
+      <!-- SECTION: MEMBERS -->
+      <section id="members">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Members <span class="accent">List</span></h2>
+            <p class="section-sub">
+              A simple list of current members who have formally joined. This reinforces shared ownership,
+              accountability, and alignment.
+            </p>
+            <div class="rule"></div>
+          </div>
+          <div class="badge">Accountability</div>
+        </div>
+
+        <div class="member-tools">
+          <input class="input" id="searchInput" type="text" placeholder="Search members by name or role (optional)…" />
+          <button class="btn" id="toggleRolesBtn" type="button" title="Show/hide roles">Toggle roles</button>
+          <button class="btn primary" id="copySummaryBtn" type="button" title="Copy snapshot summary">Copy snapshot</button>
+        </div>
+
+        <div class="members" id="memberList" aria-live="polite"></div>
+
+        <div style="margin-top:14px;">
+          <span class="pill">No sensitive details • Names only</span>
+        </div>
+      </section>
+
+      <!-- SECTION: CONSTITUTION & RULES -->
+      <section id="rules">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Constitution &amp; <span class="accent">Rules</span></h2>
+            <p class="section-sub">
+              Plain-language rules that keep the Brotherhood aligned and protected. These are the baseline standards
+              while the full charter is finalized.
+            </p>
+            <div class="rule"></div>
+          </div>
+          <div class="badge">Alignment</div>
+        </div>
+
+        <div class="rules">
+          <details class="rule-item" open>
+            <summary>
+              Core principles
+              <span class="chev" aria-hidden="true">+</span>
+            </summary>
+            <div class="rule-body">
+              We operate on trust, discipline, consistency, respect, and long-term thinking. Members protect the name
+              of the Brotherhood through conduct and reliability.
+            </div>
+          </details>
+
+          <details class="rule-item">
+            <summary>
+              Member responsibilities
+              <span class="chev" aria-hidden="true">+</span>
+            </summary>
+            <div class="rule-body">
+              Members participate actively, communicate clearly, honor commitments, support other members, and uphold
+              confidentiality where required.
+            </div>
+          </details>
+
+          <details class="rule-item">
+            <summary>
+              Governance rules
+              <span class="chev" aria-hidden="true">+</span>
+            </summary>
+            <div class="rule-body">
+              Decisions follow defined processes. Major decisions require discussion and documented agreement.
+              Leadership exists for coordination and accountability — not unchecked control.
+            </div>
+          </details>
+
+          <details class="rule-item">
+            <summary>
+              Capital handling rules
+              <span class="chev" aria-hidden="true">+</span>
+            </summary>
+            <div class="rule-body">
+              Capital figures shown here are informational only and updated manually. Any use of pooled funds must be
+              documented and approved according to the Brotherhood’s agreed process. Official records remain offline.
+            </div>
+          </details>
+
+          <details class="rule-item">
+            <summary>
+              Privacy & security
+              <span class="chev" aria-hidden="true">+</span>
+            </summary>
+            <div class="rule-body">
+              No authentication, payments, tracking, or sensitive personal data on this page. This reduces risk while
+              the Brotherhood is still forming.
+            </div>
+          </details>
+        </div>
+
+        <div class="note">
+          <strong>Note:</strong> This page is not a legal document. Final policies will be consolidated into a formal
+          charter and constitution document.
+        </div>
+      </section>
+
+      <!-- SECTION: WHAT COMES NEXT -->
+      <section id="next">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">What Comes <span class="accent">Next</span></h2>
+            <p class="section-sub">
+              This page is temporary by design. As the Brotherhood matures, we will transition to a structured platform
+              with stronger systems.
+            </p>
+            <div class="rule"></div>
+          </div>
+          <div class="badge">Roadmap</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Why this page is temporary</h3>
+            <p>
+              It’s meant to deploy fast, stay lightweight, and be easy to update. Once the permanent system is ready,
+              this page will be archived or redirected.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Planned systems (high-level)</h3>
+            <p>
+              Member portal with authentication, dashboards, initiative pipelines, voting and governance tools, and
+              internal marketplace & collaboration systems.
+            </p>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:14px;">
+          <strong>Members will shape the build:</strong> The permanent platform will be shaped by the founding members
+          who showed up early and helped define standards.
+        </div>
+
+        <div style="margin-top:14px;">
+          <span class="pill">First step • Not the destination</span>
+        </div>
+      </section>
+
+      <!-- SECTION: CONTACT -->
+      <section id="contact">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Contact &amp; <span class="accent">Updates</span></h2>
+            <p class="section-sub">
+              Use direct contact channels for confirmations, updates, and questions. Keep communication clear and
+              intentional.
+            </p>
+            <div class="rule"></div>
+          </div>
+          <div class="badge">Communication</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Primary Contact</h3>
+            <p>
+              WhatsApp / Call:
+              <a href="tel:+264817161218" style="color:var(--ink);font-weight:900;text-decoration:none;border-bottom:1px solid var(--line);">+264 81 716 1218</a>
+              <br />
+              Please include: Full name + reason for message
+            </p>
+
+            <div style="margin-top:12px;">
+              <a class="btn primary" style="text-decoration:none;"
+                href="https://wa.me/264817161218?text=Assalamu%20alaikum.%20My%20name%20is%20____.%20I%20have%20joined%20the%20Brotherhood%20and%20I%20would%20like%20to%20confirm%20my%20details%20and%20next%20steps."
+                target="_blank" rel="noopener">
+                Message on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Update Policy</h3>
+            <p>
+              This page is updated manually as capital and membership changes. If you notice an error, report it
+              directly so it can be corrected quickly.
+            </p>
+            <div style="margin-top:10px;">
+              <span class="pill">No cookies • No tracking</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer" role="contentinfo" style="flex-direction:column; align-items:flex-start;">
+        <div style="width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px;">
+          <div><strong>Brotherhood</strong> — Welcome & Transparency</div>
+          <div class="mini-rule"></div>
+          <div>Version: <span style="color:var(--ink);font-weight:900;">1.0</span></div>
+        </div>
+
+        <div style="
+          width:100%;
+          margin-top:10px;
+          padding-top:10px;
+          border-top:1px solid var(--line);
+          font-size:10px;
+          color:var(--muted);
+        ">
+          Temporary page • Built for speed and clarity • Replace when permanent platform is ready
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    // ====== Editable data (manual updates) ======
+    const BROTHERHOOD_DATA = {
+      pooledCapital: "N$ 0", // <-- update manually
+      lastUpdated: "—",      // e.g. "2026-01-04"
+      showRolesByDefault: true,
+      members: [
+        { name: "Member Name", role: "Role / Focus (optional)" },
+        { name: "Member Name", role: "Role / Focus (optional)" },
+        { name: "Member Name", role: "" }
+      ]
+    };
+
+    // ====== Helpers ======
+    function initials(name) {
+      const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+      if (parts.length === 0) return "B";
+      if (parts.length === 1) return parts[0].slice(0, 1).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function renderMembers(list, showRoles) {
+      const container = document.getElementById("memberList");
+      container.innerHTML = "";
+
+      if (!list.length) {
+        container.innerHTML = '<div class="note"><strong>No members match your search.</strong> Clear the search to see the full list.</div>';
+        return;
+      }
+
+      list.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "member";
+
+        const roleText = (m.role || "").trim();
+        const metaHtml = showRoles && roleText
+          ? `<div class="meta">${escapeHtml(roleText)}</div>`
+          : `<div class="meta" style="opacity:.75;">Role hidden</div>`;
+
+        div.innerHTML = `
+          <div class="avatar" aria-hidden="true">${initials(m.name)}</div>
+          <div>
+            <div class="name">${escapeHtml(m.name)}</div>
+            ${metaHtml}
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    // ====== Init: snapshot values ======
+    document.getElementById("pooledCapital").textContent = BROTHERHOOD_DATA.pooledCapital;
+    document.getElementById("lastUpdated").textContent = BROTHERHOOD_DATA.lastUpdated;
+    document.getElementById("memberCount").textContent = String(BROTHERHOOD_DATA.members.length);
+
+    // ====== Members search + toggle roles ======
+    let showRoles = !!BROTHERHOOD_DATA.showRolesByDefault;
+
+    const searchInput = document.getElementById("searchInput");
+    const toggleRolesBtn = document.getElementById("toggleRolesBtn");
+    const copySummaryBtn = document.getElementById("copySummaryBtn");
+
+    function filteredMembers() {
+      const q = (searchInput.value || "").trim().toLowerCase();
+      if (!q) return BROTHERHOOD_DATA.members;
+
+      return BROTHERHOOD_DATA.members.filter(m => {
+        const name = (m.name || "").toLowerCase();
+        const role = (m.role || "").toLowerCase();
+        return name.includes(q) || role.includes(q);
+      });
+    }
+
+    searchInput.addEventListener("input", () => {
+      renderMembers(filteredMembers(), showRoles);
+    });
+
+    toggleRolesBtn.addEventListener("click", () => {
+      showRoles = !showRoles;
+      renderMembers(filteredMembers(), showRoles);
+      toggleRolesBtn.textContent = showRoles ? "Hide roles" : "Show roles";
+    });
+
+    copySummaryBtn.addEventListener("click", async () => {
+      const text = `Brotherhood Snapshot\n- Total Pooled Capital: ${BROTHERHOOD_DATA.pooledCapital}\n- Members: ${BROTHERHOOD_DATA.members.length}\n- Last Updated: ${BROTHERHOOD_DATA.lastUpdated}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        copySummaryBtn.textContent = "Copied ✓";
+        setTimeout(() => copySummaryBtn.textContent = "Copy snapshot", 1200);
+      } catch {
+        alert(text);
+      }
+    });
+
+    // Initial render
+    toggleRolesBtn.textContent = showRoles ? "Hide roles" : "Show roles";
+    renderMembers(BROTHERHOOD_DATA.members, showRoles);
+
+    // ====== Mobile burger menu ======
+    (function () {
+      const btn = document.getElementById('burgerBtn');
+      const menu = document.getElementById('mobileMenu');
+
+      function closeMenu() {
+        menu.style.display = 'none';
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMenu() {
+        menu.style.display = 'block';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        if (isOpen) closeMenu();
+        else openMenu();
+      });
+
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (e.target && e.target.tagName === 'A') closeMenu();
+      });
+
+      document.addEventListener('click', function () {
+        closeMenu();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+
+    // ====== Optional: smooth scroll on same-page links (older browsers) ======
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        const el = document.querySelector(id);
+        if (!el) return;
+        // Let native smooth scroll handle if available
+      });
+    });
+  </script>
+</body>
+
+</html>
+```
