@@ -508,6 +508,13 @@
             margin: 0;
         }
 
+        .member .percentage {
+            font-weight: 700;
+            letter-spacing: -.01em;
+            font-size: 12px;
+            margin: 0;
+        }
+
         .member .meta {
             margin-top: 5px;
             color: var(--muted);
@@ -1475,30 +1482,30 @@
         const BROTHERHOOD_DATA = {
             pooledCapital: "N$ 12,750.00",
             contributionPerMember: 50, // NAD
-            lastUpdated: "2026-01-05",
+            lastUpdated: "2026-01-06",
             members: [
-                { name: "Shakeel Hoosain" },
-                { name: "Theodor Sageus Goagoseb" },
-                { name: "Affraime Garoeb" },
-                { name: "Raylin Uirab" },
-                { name: "Sleadrey Van Wyk" },
-                { name: "Melvin Gaengob" },
-                { name: "Lucas Nangombe" },
-                { name: "Sakaria Imbili" },
-                { name: "Jean-Jacques Keister" },
-                { name: "Jackie Khariseb" },
-                { name: "Daniel Hammond" },
-                { name: "Nollis Scott" },
-                { name: "Brandon-Lee Platt" },
-                { name: "Kevin Majiedt" },
-                { name: "Gerlach Mungenga" },
-                { name: "Arnando Dentlinger" },
-                { name: "Romario Bruwer" },
-                { name: "Edward Drotsky" },
-                { name: "Ricardo Ockhuizen" },
-                { name: "Neville Eiseb" },
-                { name: "AJ Junior" },
-                { name: "Lester Harker" }
+                { name: "Shakeel Hoosain", percentage: 5.5},
+                { name: "Theodor Sageus Goagoseb", percentage: 5.5},
+                { name: "Affraime Garoeb", percentage: 3.9},
+                { name: "Raylin Uirab", percentage: 4.7},
+                { name: "Sleadrey Van Wyk", percentage: 3.9 },
+                { name: "Melvin Gaengob", percentage: 3.9},
+                { name: "Lucas Nangombe", percentage: 3.9},
+                { name: "Sakaria Imbili", percentage: 3.9},
+                { name: "Jean-Jacques Keister", percentage: 5.1},
+                { name: "Jackie Khariseb", percentage: 7.5},
+                { name: "Daniel Hammond", percentage: 4.3},
+                { name: "Nollis Scott", percentage: 3.9},
+                { name: "Brandon-Lee Platt", percentage: 3.9},
+                { name: "Kevin Majiedt", percentage: 3.9},
+                { name: "Gerlach Mungenga", percentage: 3.9},
+                { name: "Arnando Dentlinger", percentage: 3.9},
+                { name: "Romario Bruwer", percentage: 7.5},
+                { name: "Edward Drotsky", percentage: 3.9},
+                { name: "Ricardo Ockhuizen", percentage: 3.9},
+                { name: "Neville Eiseb", percentage: 4.7},
+                { name: "AJ Junior", percentage: 3.9},
+                { name: "Lester Harker", percentage: 3.9}
             ]
         };
 
@@ -1553,6 +1560,7 @@
                 <div class="avatar" aria-hidden="true">${initials(m.name)}</div>
                 <div>
                     <div class="name">${escapeHtml(m.name)}</div>
+                    <div class="percentage">${escapeHtml(m.percentage)}%</div>
                 </div>
             `;
                 container.appendChild(div);
